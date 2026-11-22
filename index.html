@@ -8,6 +8,24 @@
 </head>
 <body>
 <main>
+  <div id="oauth" class="aviso" hidden>
+    <strong>Autorización recibida / Authorization received ✔</strong>
+    <p>Copia la dirección de esta página y pégala en Relatos 3am Publisher.<br>
+       Copy this page's address and paste it into Relatos 3am Publisher.</p>
+    <button id="copiar" type="button">Copiar dirección / Copy URL</button>
+  </div>
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search);
+      if (!q.get("code")) return;
+      document.getElementById("oauth").hidden = false;
+      document.getElementById("copiar").onclick = function () {
+        navigator.clipboard.writeText(location.href).then(function () {
+          document.getElementById("copiar").textContent = "Copiada ✔ / Copied ✔";
+        });
+      };
+    })();
+  </script>
   <h1>Relatos 3am</h1>
   <p>Canal de relatos cortos de misterio y terror suave en castellano, y leyendas de España.
      Los relatos de ficción se indican como ficción y el contenido se genera con ayuda de
